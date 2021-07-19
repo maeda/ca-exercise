@@ -2,10 +2,13 @@ setup:
 	pipenv install
 
 makemigrations:
-	python core/manage.py makemigrations
+	python manage.py makemigrations
 
 migrate:
-	python core/manage.py migrate
+	python manage.py migrate
 
 run: makemigrations migrate
-	python core/manage.py runserver
+	python manage.py runserver
+
+test:
+	python manage.py test
