@@ -11,5 +11,8 @@ class Event(models.Model):
     data = models.JSONField(blank=False)
     timestamp = models.DateTimeField(auto_now_add=False)
 
+    def __str__(self):
+        return str(self.id)
+
     class Meta:
         ordering = ['timestamp']
