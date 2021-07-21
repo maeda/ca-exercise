@@ -20,7 +20,8 @@ class ListEvents(ModelViewSet):
     @transaction.atomic
     def post(self, request):
         serializer = EventSerializer(data=request.data)
-        if serializer.is_valid():
-            response = serializer.save()
-            return Response(response, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.is_valid(raise_exception=True)
+
+        response = serializer.save()
+        return Response(response, status=status.HTTP_201_CREATED)
+
