@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 
+from eye.filters import EventFilter
 from eye.models import Event
 from eye.serializers import EventSerializer
 
@@ -14,6 +15,7 @@ class ListEvents(ModelViewSet):
     serializer_class = EventSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['session_id', 'category']
+    filter_class = EventFilter
 
     @transaction.atomic
     def post(self, request):
