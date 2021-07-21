@@ -1,3 +1,5 @@
+import logging as logger
+
 from django.db import transaction
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
@@ -18,10 +20,7 @@ class ListEvents(ModelViewSet):
     filter_class = EventFilter
 
     @transaction.atomic
-    def post(self, request):
-        serializer = EventSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        response = serializer.save()
-        return Response(response, status=status.HTTP_201_CREATED)
+    def create(self, request, *args, **kwargs):
+        logger.info(request.data)
+        return super(ModelViewSet, self).create(request, *args, **kwargs)
 
