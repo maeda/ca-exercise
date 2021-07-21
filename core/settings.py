@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_api_logger',
     'rest_framework',
+    'django_filters',
     'eye.apps.EyeConfig',
 
 ]

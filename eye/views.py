@@ -1,4 +1,5 @@
 from django.db import transaction
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
@@ -11,6 +12,8 @@ class ListEvents(ModelViewSet):
 
     queryset = Event.objects.select_for_update().all().order_by('-timestamp')
     serializer_class = EventSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['session_id', 'category']
 
     @transaction.atomic
     def post(self, request):

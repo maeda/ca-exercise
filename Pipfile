@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 celery = "*"
 drf-api-logger = "*"
+django-filter = "*"
 
 [dev-packages]
 
